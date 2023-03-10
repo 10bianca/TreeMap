@@ -1,0 +1,52 @@
+Cerinta 1:
+
+In functia createTree am initializat arborele, setand toate campurile acestuia cu functiile date ca parametrii, respectiv inaltimea radacinii si numarul de noduri din arbore cu 0, iar radacina a fost initializata cu NULL.
+In functia isEmpty am verificat daca radacina arborelui este nula, caz in care returnam 1 si in caz contrar 0.
+
+In functia search parcurgem tot arborele pana la final sau pana la gasirea elementului cautat, urmarind urmatorii pasi: daca elementul nodului curent este mai mic decat elementul cautat cautam in subarborele drept al nodului, iar in caz contrar, in subarborele stang.
+La finalul operatiilor verificam daca elementul curent (daca e diferit de NULL) este cel cautat, caz in care il returnam.
+
+Functia minimum parcurge recursiv subarborele stang al nodului pana la cea mai mica frunza, iar functia maximum parcurge recursiv subarborele drept al nodului pana la gasirea celei mai mare frunze.
+
+Functia successor verifica initial daca elementul transmis ca parametru este maximul, caz in care nu are succesor si returnam NULL. 
+Verificam apoi daca nodul are subarbore drept, caz in care returnam cel mai mic nod din acesta.
+Daca niciuna din aceste conditii nu este indeplinita parcurgem arborele de jos in sus, din parinte in parinte pana gasim un nod care sa fie copilul stang al parintelui sau, returnand ulterior parintele care reprezinta succesorul.
+
+Functia predecessor are aceeasi logica ca cea successor, dar de daca aceasta verificam daca nodul este cel minim din arbore sau daca exista subarborele stang din care returnam nodul sau maxim.
+Parcurgand analog din parinte in parinte verificam daca nodul curent este copil de drepta al parintelui sau, caz in care returnam parintele nodului, adica predecesorul cautat.
+
+Funcia avlRotateLeft retine in variabila y copilul de drepta al nodlui dat ca parametru, x.
+Dupa aceea mutam b-ul, adica copilul de stanga al lui y in dreapta lui x.
+Dupa aceea schimbam radacina subarborelui din x in y astfel : verificam daca x este copil de stanga al parintelui sau, caz in care y devine copil de stanga pentru parintele lui x si procedam analog si daca x este copil de dreapta.
+Daca x este radacina atunci schimbam radacina arborelui in y.
+X devine apoi copilul lui y si actualizam inaltimea ambelor noduri din arbore.
+
+Procedam analog si pentru functia avlRotateRight, doar ca de data aceasta x este copilul de stanga al lui y.
+Mutam copilul din drepta al lui x in stanga lui y si actualizam x ca radacina a subarborelui lui y prin cele trei cazuri tratate si in functia anterioara, urmand ca apoi sa actualizam inaltimile nodurilor.
+
+Functia avlgetBalance returneaza factorul de echilibrare pentru un nod care este inaltimea subarborelui stang minus inaltimea subarborelui drept sau 0 daca acesti doi subarbori nu exista.
+
+Functia avlFixUp reechilibreaza un arbore AVL prin folosirea celor 4 cazuri de rotatii.
+Parcurgem arborele de la nodul dat ca parametru in sus, catre radacina si calculam de fiecare data factorul de echilibrare al nodlui curent, in functie de care avem 4 cazuri:
+1.Factorul este 2 (> 1) si elementul copilului din stanga al nodului este mai mare decat elementul dat initial ca parametru.
+Se executa o rotatie de dreapta cu radacina in nodul curent.
+
+2.Factorul este -2 (< 1) si elementul copilului din dreapta al nodului este mai mic decat elementul dat initial ca parametru.
+Se executa o rotatie de stanga cu radacina in nodul curent.
+
+3.Factorul este 2 (> 1) si elementul copilului din stanga al nodului este mai mic decat elementul dat initial ca parametru.
+Se executa o rotatie de dreapta cu radacina in copilul de stanga al nodului curent, dupa care se executa o rotatie de drepta cu radacina in nodul curent.
+
+4.Factorul este -2 (< 1) si elementul copilului din dreapta al nodului este mai mare decat elementul dat initial ca parametru.
+Se executa o rotatie de dreapta cu radacina in copilul de dreapta al nodului curent, dupa care se executa o rotatie de stanga cu radacina in nodul curent.
+
+Functia insert creaza un nod nou cu datele data ca parametrii, dupa care trateaza de fapt doua cazuri: arborele este vid sau nu.
+Daca arborele este vid, radacina devine nodul nou, iar daca arborele nu este vid il parcurgem pana la final sau pana la gasirea locului unde se poate insera nodul nou.
+In aceasta parcurgere verificam daca nodul nou poate fi copil de dreapta sau de stanga al nodului curent, deplasandu-ne in subarborele drept respectiv cel stang.
+Si mai verificam daca nodul nou a mai fost inserat o data caz in care nu facem nimic si iesim din functie.
+La final apleam functia anterioara pentru a reechilibra arborele.
+
+Cerinta 2:
+
+Functia buildTreeFromFile citeste cuvant cu cuvant din fisierul al carui nume este dat ca parametru si creaza un element pentru lista dublu inlantuita cu ajutorul functiei createStrElement, dar si un index cu ajutorul functiei createIndexInfo.
+Dupa aceea vom insera nodul cu aceste informatii in lista cu ajutorul functiei insert.
